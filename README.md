@@ -47,3 +47,11 @@ Le Lenovo ThinkCentre, sous TrueNAS, assure la gestion centralisée des données
 1. **ZFS Pool** : Configuration en disques isolés (Single-disk VDEVs) pour limiter l'impact d'une panne matérielle à un seul volume.
 2. **SMB Shares** : Partages de fichiers personnels configurés pour un accès multiplateforme (Windows, Linux).
 3. **Connectivité** : Accès distant sécurisé via le Subnet Router Tailscale hébergé sur le Intel NUC.
+
+## Sauvegarde et Résilience
+
+L'infrastructure est conçue pour séparer le calcul du stockage des données critiques :
+
+* **Externalisation** : Les sauvegardes de l'ensemble des conteneurs LXC et machines virtuelles du Intel NUC sont exportées vers le TrueNas (Lenovo ThinkCentre).
+* **Protocole** : Utilisation d'un point de montage NFS entre Proxmox et TrueNAS pour assurer des transferts rapides et une gestion native par l'hyperviseur.
+* **Résilience** : Cette architecture permet une restauration rapide des services sur un noeud tiers en cas de défaillance matérielle du NUC.
